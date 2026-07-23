@@ -21,18 +21,39 @@ export type SiteConfig = {
 };
 
 export type HeroContent = {
-  eyebrow: string;
   title: string;
-  titleAccent?: string;
-  description: string;
+  subtitle: string;
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
   image: {
     src: string;
     alt: string;
   };
-  meta: {
-    location: string;
-    hours: string;
-  };
+};
+
+export type Service = {
+  title: string;
+  description: string;
+  price: string;
+  icon: string;
+};
+
+export type TeamMember = {
+  name: string;
+  role: string;
+  bio: string;
+  image: string;
+};
+
+export type GalleryImage = {
+  src: string;
+  alt: string;
+  span?: "wide" | "tall" | "normal";
+};
+
+export type Review = {
+  quote: string;
+  name: string;
+  service: string;
+  rating: number;
 };

@@ -2,28 +2,22 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/content/site";
 
 export function createMetadata(): Metadata {
-  const title = `${siteConfig.name} | Premium Ilusalong Eestis`;
+  const title = `${siteConfig.name} | ${siteConfig.tagline}`;
   const description = siteConfig.description;
 
   return {
     metadataBase: new URL(siteConfig.url),
-    title: {
-      default: title,
-      template: `%s | ${siteConfig.name}`,
-    },
+    title: { default: title, template: `%s | ${siteConfig.name}` },
     description,
     keywords: [
-      "ilusalong",
+      "luxury beauty salon",
       "Thessa Disain",
-      "juukselõikus",
-      "maniküür",
-      "näohooldus",
+      "hair salon",
+      "manicure",
+      "skincare",
       "Tallinn",
-      "Eesti",
-      "luksus ilusalong",
+      "Estonia",
     ],
-    authors: [{ name: siteConfig.name }],
-    creator: siteConfig.name,
     openGraph: {
       type: "website",
       locale: siteConfig.locale,
@@ -31,19 +25,11 @@ export function createMetadata(): Metadata {
       siteName: siteConfig.name,
       title,
       description,
+      images: [{ url: "/images/hero.jpg", width: 1920, height: 1080, alt: siteConfig.tagline }],
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
-    alternates: {
-      canonical: siteConfig.url,
-    },
+    twitter: { card: "summary_large_image", title, description },
+    robots: { index: true, follow: true },
+    alternates: { canonical: siteConfig.url },
   };
 }
 
@@ -63,20 +49,6 @@ export function createLocalBusinessJsonLd() {
       postalCode: "10141",
       addressCountry: "EE",
     },
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "10:00",
-        closes: "19:00",
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: "Saturday",
-        opens: "10:00",
-        closes: "15:00",
-      },
-    ],
-    priceRange: "€€",
+    priceRange: "€€€",
   };
 }

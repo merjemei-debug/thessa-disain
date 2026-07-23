@@ -26,7 +26,7 @@ export default function RootLayout({
 
   return (
     <html
-      lang="et"
+      lang="en"
       className={`${inter.variable} ${cormorant.variable} h-full scroll-smooth antialiased`}
     >
       <head>

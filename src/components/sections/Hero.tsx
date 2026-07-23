@@ -1,56 +1,38 @@
 "use client";
 
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
 import { heroContent } from "@/content/site";
-import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import Eyebrow from "@/components/ui/Eyebrow";
-import {
-  blurReveal,
-  fadeUp,
-  lineExpand,
-  staggerContainer,
-} from "@/lib/motion";
+import { fadeUp, staggerContainer } from "@/lib/motion";
 
-const HERO_BLUR_DATA_URL =
+const HERO_BLUR =
   "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=";
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLElement>(null);
   const reducedMotion = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
+    target: ref,
     offset: ["start start", "end start"],
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", reducedMotion ? "0%" : "18%"]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
-  const contentY = useTransform(scrollYProgress, [0, 0.55], ["0%", reducedMotion ? "0%" : "8%"]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", reducedMotion ? "0%" : "15%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   return (
     <section
-      ref={sectionRef}
+      ref={ref}
       aria-labelledby="hero-heading"
-      className="relative min-h-[100dvh] overflow-hidden"
+      className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden"
     >
-      {/* Background */}
-      <motion.div
-        style={{ y: backgroundY }}
-        className="absolute inset-0 will-change-transform"
-        aria-hidden="true"
-      >
+      <motion.div style={{ y: bgY }} className="absolute inset-0" aria-hidden="true">
         <motion.div
-          initial={reducedMotion ? false : { scale: 1.12 }}
+          initial={reducedMotion ? false : { scale: 1.06 }}
           animate={{ scale: 1 }}
-          transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0"
         >
           <Image
@@ -59,125 +41,82 @@ export default function Hero() {
             fill
             priority
             placeholder="blur"
-            blurDataURL={HERO_BLUR_DATA_URL}
+            blurDataURL={HERO_BLUR}
             sizes="100vw"
-            className="scale-110 object-cover blur-[3px] brightness-[0.72] saturate-[0.85]"
+            className="object-cover"
           />
         </motion.div>
-
-        <div className="absolute inset-0 bg-charcoal/62" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(42,42,42,0.45)_100%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/25 to-charcoal/80" />
-        <div className="hero-grain pointer-events-none absolute inset-0" />
+        <div className="absolute inset-0 bg-charcoal/45" />
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/30 via-charcoal/20 to-charcoal/60" />
+        <div className="hero-grain absolute inset-0" />
       </motion.div>
 
-      {/* Content */}
       <motion.div
-        style={{ opacity: contentOpacity, y: contentY }}
-        className="relative z-10 flex min-h-[100dvh] flex-col"
+        style={{ opacity }}
+        className="relative z-10 mx-auto max-w-4xl px-6 py-32 text-center lg:px-10"
       >
-        <Container className="flex flex-1 flex-col justify-center pb-28 pt-32 sm:pb-32 sm:pt-36 lg:pb-40 lg:pt-44">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="flex flex-col items-center"
+        >
           <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-            className="max-w-3xl text-center lg:text-left"
+            custom={0}
+            variants={fadeUp}
+            className="mb-6 h-px w-12 bg-gold-light"
+            aria-hidden="true"
+          />
+
+          <motion.h1
+            id="hero-heading"
+            custom={0.1}
+            variants={fadeUp}
+            className="font-serif text-[clamp(2.5rem,7vw,5.5rem)] font-light uppercase tracking-[0.18em] text-white"
           >
-            <motion.div custom={0} variants={fadeUp}>
-              <Eyebrow light>{heroContent.eyebrow}</Eyebrow>
-            </motion.div>
+            {heroContent.title}
+          </motion.h1>
 
-            <motion.h1
-              id="hero-heading"
-              custom={0.12}
-              variants={blurReveal}
-              className="mt-8 font-serif text-[clamp(3rem,8vw,6.5rem)] font-light leading-[0.95] tracking-[0.02em] text-white"
-            >
-              {heroContent.title}
-              {heroContent.titleAccent && (
-                <>
-                  <br />
-                  <span className="text-white/88">{heroContent.titleAccent}</span>
-                </>
-              )}
-            </motion.h1>
+          <motion.p
+            custom={0.22}
+            variants={fadeUp}
+            className="mt-5 font-serif text-xl font-light italic tracking-wide text-gold-light sm:text-2xl"
+          >
+            {heroContent.subtitle}
+          </motion.p>
 
-            <motion.div
-              custom={0.24}
-              variants={lineExpand}
-              className="mx-auto mt-10 h-px w-20 origin-left bg-oak lg:mx-0"
-              aria-hidden="true"
-            />
-
-            <motion.p
-              custom={0.32}
-              variants={fadeUp}
-              className="mx-auto mt-10 max-w-xl text-base font-light leading-[1.8] tracking-[0.01em] text-white/72 sm:text-lg lg:mx-0"
-            >
-              {heroContent.description}
-            </motion.p>
-
-            <motion.div
-              custom={0.48}
-              variants={fadeUp}
-              className="mt-12 flex flex-col items-center gap-5 sm:flex-row sm:gap-6 lg:items-start"
-            >
-              <Button href={heroContent.primaryCta.href} variant="primary">
-                {heroContent.primaryCta.label}
-              </Button>
-              <Button href={heroContent.secondaryCta.href} variant="ghost-light">
-                {heroContent.secondaryCta.label}
-              </Button>
-            </motion.div>
-          </motion.div>
-        </Container>
-
-        {/* Bottom meta bar */}
-        <Container className="border-t border-white/10 pb-8 pt-6 sm:pb-10">
           <motion.div
-            initial={reducedMotion ? false : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-center justify-between gap-8 sm:flex-row"
+            custom={0.38}
+            variants={fadeUp}
+            className="mt-12 flex w-full flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5"
           >
-            <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:gap-12 sm:text-left">
-              <div>
-                <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-white/45">
-                  Asukoht
-                </p>
-                <p className="mt-2 text-sm font-light tracking-wide text-white/80">
-                  {heroContent.meta.location}
-                </p>
-              </div>
-              <div className="hidden h-8 w-px bg-white/15 sm:block" aria-hidden="true" />
-              <div>
-                <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-white/45">
-                  Lahtiolekuajad
-                </p>
-                <p className="mt-2 text-sm font-light tracking-wide text-white/80">
-                  {heroContent.meta.hours}
-                </p>
-              </div>
-            </div>
-
-            <a
-              href="#teenused"
-              className="group flex flex-col items-center gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-oak-light"
-              aria-label="Kerige alla, et avastada teenuseid"
-            >
-              <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-white/45 transition-colors group-hover:text-white/70">
-                Avasta
-              </span>
-              <motion.span
-                animate={reducedMotion ? undefined : { y: [0, 6, 0] }}
-                transition={{ repeat: Infinity, duration: 2.4, ease: "easeInOut" }}
-                className="block h-12 w-px bg-gradient-to-b from-oak-light via-oak/60 to-transparent"
-                aria-hidden="true"
-              />
-            </a>
+            <Button href={heroContent.primaryCta.href} variant="primary">
+              {heroContent.primaryCta.label}
+            </Button>
+            <Button href={heroContent.secondaryCta.href} variant="secondary">
+              {heroContent.secondaryCta.label}
+            </Button>
           </motion.div>
-        </Container>
+        </motion.div>
       </motion.div>
+
+      <motion.a
+        href="#services"
+        style={{ opacity }}
+        initial={reducedMotion ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 1 }}
+        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light"
+        aria-label="Scroll to services"
+      >
+        <span className="text-[10px] uppercase tracking-[0.3em] text-white/50">Scroll</span>
+        <motion.span
+          animate={reducedMotion ? undefined : { y: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+          className="block h-8 w-px bg-gradient-to-b from-gold-light to-transparent"
+          aria-hidden="true"
+        />
+      </motion.a>
     </section>
   );
 }

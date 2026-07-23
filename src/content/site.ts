@@ -12,93 +12,117 @@ export const siteConfig: SiteConfig = {
   name: "Thessa Disain",
   tagline: "Luxury Beauty Salon",
   description:
-    "Thessa Disain is a luxury beauty salon in Estonia offering bespoke hair, nail, and skincare treatments in a serene, minimalist setting.",
+    "Thessa Disain on luksuslik ilusalong Eestis — personaalne juuksehooldus, küüned, püsimeik ja näohooldused minimalistlikus, kõrgetasemelises keskkonnas.",
   url: "https://thessadisain.ee",
-  locale: "en_EE",
+  locale: "et_EE",
   contact: {
-    address: "Pärnu mnt 28, Tallinn 10141, Estonia",
+    address: "Pärnu mnt 28, Tallinn 10141",
     phone: "+372 555 9876",
     email: "info@thessadisain.ee",
     hours: {
-      weekdays: "Mon – Fri 10:00 – 19:00",
-      saturday: "Sat 10:00 – 15:00",
+      weekdays: "E–R 10:00 – 19:00",
+      saturday: "L 10:00 – 15:00",
     },
   },
 };
 
 export const navigationLinks: NavLink[] = [
-  { href: "#services", label: "Services" },
-  { href: "#team", label: "Team" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#reviews", label: "Reviews" },
-  { href: "#contact", label: "Contact" },
+  { href: "#teenused", label: "Teenused" },
+  { href: "#hinnakiri", label: "Hinnakiri" },
+  { href: "#meeskond", label: "Meeskond" },
+  { href: "#galerii", label: "Galerii" },
+  { href: "#kontakt", label: "Kontakt" },
+];
+
+export const footerLinks: NavLink[] = [
+  { href: "/toopakkumised", label: "Tööpakkumised" },
 ];
 
 export const heroContent: HeroContent = {
+  eyebrow: "Premium ilusalong Tallinnas",
   title: "THESSA DISAIN",
   subtitle: "Luxury Beauty Salon",
+  features: [
+    { icon: "✨", label: "Professionaalsed iluspetsialistid" },
+    { icon: "📍", label: "Mugav asukoht Tallinnas" },
+    { icon: "🚗", label: "Tasuta parkimine klientidele" },
+  ],
   primaryCta: {
-    label: "Book Appointment",
-    href: "#contact",
+    label: "Broneeri aeg",
+    href: "#kontakt",
   },
   secondaryCta: {
-    label: "Explore Services",
-    href: "#services",
+    label: "Vaata teenuseid",
+    href: "#teenused",
   },
   image: {
     src: "/images/hero.jpg",
-    alt: "Thessa Disain luxury beauty salon interior with warm lighting and elegant minimalist design",
+    alt: "Thessa Disain luksuslik ilusalongi interjöör sooja valguse ja elegantse disainiga",
   },
 };
 
 export const services: Service[] = [
   {
-    title: "Hair Design",
+    title: "Küünehooldus",
+    icon: "💅",
     description:
-      "Precision cuts, bespoke colour, and restorative treatments tailored to your unique style.",
-    price: "From €55",
-    icon: "✦",
+      "Maniküür, geellakk, geelküüned ja pediküür — viimistletud tulemus premium toodetega.",
+    href: "#kontakt",
   },
   {
-    title: "Nail Atelier",
+    title: "Juuksuriteenused",
+    icon: "💇",
     description:
-      "Manicure, pedicure, and gel artistry using premium products in a tranquil setting.",
-    price: "From €40",
-    icon: "◈",
+      "Lõikus, värvimine ja hooldus, mis toob esile sinu loomuliku ilu ja isikliku stiili.",
+    href: "#kontakt",
   },
   {
-    title: "Skin Rituals",
+    title: "Püsimeik",
+    icon: "✨",
     description:
-      "Deep cleansing, hydration, and anti-ageing facials for a luminous, refined complexion.",
-    price: "From €65",
-    icon: "◇",
+      "Kulmude, huulte ja silmade püsimeik peente, püsivate ja loomulike tulemustega.",
+    href: "#kontakt",
   },
   {
-    title: "Brow & Lash",
+    title: "Ripsmed ja kulmud",
+    icon: "👁️",
     description:
-      "Sculpting, tinting, and lamination to frame your features with natural elegance.",
-    price: "From €30",
-    icon: "○",
+      "Ripsmepikendused ja kulmuhooldus harmoonilise, elegantse ja loomuliku ilmega.",
+    href: "#kontakt",
+  },
+  {
+    title: "Depilatsioon",
+    icon: "🌿",
+    description:
+      "Professionaalne depilatsioon siledaks ja pehmeks nahuks — delikaatne ja tõhus hoolitsus.",
+    href: "#kontakt",
+  },
+  {
+    title: "Tätoveerimine",
+    icon: "🖋️",
+    description:
+      "Kunstiline tätoveerimine personaalsete kujundite, täpse tehnika ja puhta stiiliga.",
+    href: "#kontakt",
   },
 ];
 
 export const teamMembers: TeamMember[] = [
   {
     name: "Thessa K.",
-    role: "Founder & Lead Stylist",
-    bio: "Over 15 years crafting signature looks with an eye for timeless, modern beauty.",
+    role: "Asutaja & juhtstilist",
+    bio: "Üle 15 aasta kogemust ajatu, modernse ilu loomisel.",
     image: "/images/team-1.jpg",
   },
   {
     name: "Liisa M.",
-    role: "Senior Colourist",
-    bio: "Specialist in balayage and dimensional colour with a passion for natural movement.",
+    role: "Vanemkolurist",
+    bio: "Balayage ja dimensioonilise värvi spetsialist loomuliku liikumisega.",
     image: "/images/team-2.jpg",
   },
   {
     name: "Anna R.",
-    role: "Skin & Nail Specialist",
-    bio: "Dedicated to detail-led care, creating flawless results with a gentle touch.",
+    role: "Küüned & nahahooldus",
+    bio: "Detailidenle pühendunud hoolitsus, mis annab laitmatu tulemuse.",
     image: "/images/gallery-1.jpg",
   },
 ];
@@ -106,27 +130,27 @@ export const teamMembers: TeamMember[] = [
 export const galleryImages: GalleryImage[] = [
   {
     src: "/images/hero.jpg",
-    alt: "Salon interior with warm beige tones and soft natural light",
+    alt: "Salongi interjöör sooja beeži toonidega",
     span: "wide",
   },
   {
     src: "/images/gallery-1.jpg",
-    alt: "Stylist performing a precision haircut",
+    alt: "Stilist teeb juukselõikus",
     span: "tall",
   },
   {
     src: "/images/gallery-2.jpg",
-    alt: "Luxury manicure station with gold accents",
+    alt: "Luksuslik maniküürijaam",
     span: "normal",
   },
   {
     src: "/images/gallery-3.jpg",
-    alt: "Skincare treatment in a serene spa environment",
+    alt: "Näohoolduse protseduur",
     span: "normal",
   },
   {
     src: "/images/gallery-4.jpg",
-    alt: "Elegant nail art detail",
+    alt: "Elegantne küünekunst",
     span: "wide",
   },
 ];
@@ -134,23 +158,23 @@ export const galleryImages: GalleryImage[] = [
 export const reviews: Review[] = [
   {
     quote:
-      "An absolute sanctuary. Every visit feels like a private retreat — the attention to detail is unmatched.",
+      "Tõeline pühamu. Iga külastus tundub nagu privaatne puhkus — tähelepanu detailidele on võrratu.",
     name: "Sophie L.",
-    service: "Hair & Colour",
+    service: "Juuksed & värv",
     rating: 5,
   },
   {
     quote:
-      "The most refined salon experience I've had in Tallinn. Understated luxury at its finest.",
+      "Kõige stiilsem salongikogemus Tallinnas. Vaikne luksus parimal moel.",
     name: "Elena V.",
-    service: "Skin Ritual",
+    service: "Näohooldus",
     rating: 5,
   },
   {
     quote:
-      "Impeccable service, beautiful space, and results that always exceed expectations.",
+      "Laitmatu teenindus, ilus ruum ja tulemused, mis alati ületavad ootusi.",
     name: "Maria T.",
-    service: "Nail Atelier",
+    service: "Küünehooldus",
     rating: 5,
   },
 ];

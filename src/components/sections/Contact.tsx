@@ -8,7 +8,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Contact() {
   return (
-    <section id="contact" className="bg-beige py-24 sm:py-32">
+    <section id="kontakt" className="bg-beige py-24 sm:py-32">
       <Container>
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
           <ScrollReveal>

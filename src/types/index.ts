@@ -21,8 +21,10 @@ export type SiteConfig = {
 };
 
 export type HeroContent = {
+  eyebrow: string;
   title: string;
   subtitle: string;
+  features: { icon: string; label: string }[];
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
   image: {
@@ -33,9 +35,10 @@ export type HeroContent = {
 
 export type Service = {
   title: string;
-  description: string;
-  price: string;
   icon: string;
+  description: string;
+  items?: string[];
+  href: string;
 };
 
 export type TeamMember = {

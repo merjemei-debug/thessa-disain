@@ -15,7 +15,7 @@ const spanClasses: Record<string, string> = {
 
 export default function Gallery() {
   return (
-    <section id="gallery" className="bg-white py-24 sm:py-32">
+    <section id="galerii" className="bg-white py-24 sm:py-32">
       <Container>
         <ScrollReveal className="mb-16 sm:mb-20">
           <SectionHeading

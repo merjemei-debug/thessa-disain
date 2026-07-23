@@ -45,7 +45,7 @@ export default function Header() {
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-charcoal focus:px-4 focus:py-2 focus:text-sm focus:text-white"
       >
-        Skip to content
+        Liigu põhisisu juurde
       </a>
 
       <Container
@@ -62,12 +62,12 @@ export default function Header() {
           className={`font-serif text-lg font-light uppercase tracking-[0.22em] transition-colors duration-500 sm:text-xl ${
             transparent ? "text-white" : "text-charcoal"
           }`}
-          aria-label={`${siteConfig.name} home`}
+          aria-label={`${siteConfig.name} avaleht`}
         >
           Thessa
         </motion.a>
 
-        <nav aria-label="Main navigation" className="hidden items-center gap-8 xl:gap-10 lg:flex">
+        <nav aria-label="Põhinavigatsioon" className="hidden items-center gap-7 xl:gap-9 lg:flex">
           {navigationLinks.map((link, i) => (
             <motion.div
               key={link.href}
@@ -87,14 +87,14 @@ export default function Header() {
               href={heroContent.primaryCta.href}
               variant={transparent ? "nav-light" : "nav-dark"}
             >
-              Book
+              {heroContent.primaryCta.label}
             </Button>
           </motion.div>
         </nav>
 
         <button
           type="button"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-label={menuOpen ? "Sulge menüü" : "Ava menüü"}
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
           className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full lg:hidden"
@@ -117,7 +117,7 @@ export default function Header() {
         {menuOpen && (
           <motion.nav
             id="mobile-nav"
-            aria-label="Mobile navigation"
+            aria-label="Mobiilinavigatsioon"
             initial={reducedMotion ? false : { opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -141,7 +141,7 @@ export default function Header() {
                 className="w-full"
                 onClick={() => setMenuOpen(false)}
               >
-                Book Appointment
+                {heroContent.primaryCta.label}
               </Button>
             </Container>
           </motion.nav>

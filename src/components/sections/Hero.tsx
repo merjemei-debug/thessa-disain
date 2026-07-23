@@ -61,32 +61,49 @@ export default function Hero() {
           animate="visible"
           className="flex flex-col items-center"
         >
-          <motion.div
+          <motion.p
             custom={0}
             variants={fadeUp}
-            className="mb-6 h-px w-12 bg-gold-light"
-            aria-hidden="true"
-          />
+            className="mb-6 text-[11px] font-medium uppercase tracking-[0.35em] text-gold-light"
+          >
+            {heroContent.eyebrow}
+          </motion.p>
 
           <motion.h1
             id="hero-heading"
-            custom={0.1}
+            custom={0.08}
             variants={fadeUp}
             className="font-serif text-[clamp(2.5rem,7vw,5.5rem)] font-light uppercase tracking-[0.18em] text-white"
           >
             {heroContent.title}
           </motion.h1>
 
-          <motion.p
-            custom={0.22}
+          <motion.ul
+            custom={0.18}
             variants={fadeUp}
-            className="mt-5 font-serif text-xl font-light italic tracking-wide text-gold-light sm:text-2xl"
+            className="mt-8 flex w-full max-w-2xl flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center"
+            aria-label="Salongi eelised"
+          >
+            {heroContent.features.map((feature) => (
+              <li key={feature.label}>
+                <span className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/10 px-4 py-2.5 text-[11px] font-light tracking-wide text-white/90 backdrop-blur-md sm:px-5">
+                  <span aria-hidden="true">{feature.icon}</span>
+                  {feature.label}
+                </span>
+              </li>
+            ))}
+          </motion.ul>
+
+          <motion.p
+            custom={0.28}
+            variants={fadeUp}
+            className="mt-8 font-serif text-xl font-light italic tracking-wide text-gold-light sm:text-2xl"
           >
             {heroContent.subtitle}
           </motion.p>
 
           <motion.div
-            custom={0.38}
+            custom={0.4}
             variants={fadeUp}
             className="mt-12 flex w-full flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5"
           >
@@ -101,15 +118,15 @@ export default function Hero() {
       </motion.div>
 
       <motion.a
-        href="#services"
+        href="#teenused"
         style={{ opacity }}
         initial={reducedMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 1 }}
         className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold-light"
-        aria-label="Scroll to services"
+        aria-label="Kerige teenuste juurde"
       >
-        <span className="text-[10px] uppercase tracking-[0.3em] text-white/50">Scroll</span>
+        <span className="text-[10px] uppercase tracking-[0.3em] text-white/50">Kerige</span>
         <motion.span
           animate={reducedMotion ? undefined : { y: [0, 6, 0] }}
           transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}

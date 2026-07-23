@@ -9,7 +9,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Team() {
   return (
-    <section id="team" className="bg-beige py-24 sm:py-32">
+    <section id="meeskond" className="bg-beige py-24 sm:py-32">
       <Container>
         <ScrollReveal className="mb-16 sm:mb-20">
           <SectionHeading
